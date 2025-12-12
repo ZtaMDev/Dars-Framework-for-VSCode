@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2020",
+    "checkJs": true,
+    "allowJs": true,
+    "lib": ["es2021"],
+    "types": ["vscode"],
+    "strict": false
+  },
+  "exclude": ["node_modules", ".vscode-test"]
+}

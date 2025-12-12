@@ -1,0 +1,76 @@
+{
+  "name": "dars-framework",
+  "displayName": "Dars Framework",
+  "description": "Dars Framework integration for VS Code: open a running preview in a webview and get Tailwind-like utility style completions in Python.",
+  "version": "0.0.1",
+  "icon":"Dars.png",
+  "publisher": "ZtaMDev",
+  "readme": "README.md",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:dars.openPreview",
+    "onCommand:dars.openPreviewFromSelection",
+    "onCommand:dars.openPreviewFromClipboard"
+  ],
+  "main": "src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "dars.openPreview",
+        "title": "Dars: Open Preview URL",
+        "category": "Dars"
+      },
+      {
+        "command": "dars.openPreviewFromSelection",
+        "title": "Dars: Open Preview (Selected URL)",
+        "category": "Dars"
+      },
+      {
+        "command": "dars.openPreviewFromClipboard",
+        "title": "Dars: Open Preview (Clipboard URL)",
+        "category": "Dars"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "dars.openPreviewFromSelection",
+          "when": "editorTextFocus && editorHasSelection",
+          "group": "navigation@50"
+        }
+      ]
+    },
+    "keybindings": [],
+    "configuration": {
+      "type": "object",
+      "title": "Dars Preview",
+      "properties": {
+        "dars.preview.preferredUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Preferred preview URL to use when opening Dars Preview. If empty, the clicked/selected URL is used."
+        },
+        "dars.utilities.enableCompletions": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Dars utility style completions inside Python strings (style=\"...\")."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "node build.js",
+    "package": "vsce package || echo 'Instala vsce globalmente para empaquetar'",
+    "test": "echo 'No tests defined'"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0"
+  }
+}
